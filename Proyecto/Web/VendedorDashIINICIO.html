@@ -13,7 +13,65 @@
 </head>
 
 <body>
-
+<!--modal registro de negocio primera vez-->
+    <!-- Modal -->
+<div class="modal fade" id="registroNegocioModal" tabindex="-1" aria-labelledby="registroNegocioModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registroNegocioModalLabel">Registrar Negocio</h5>
+          <!-- Botón de cierre de la "X" -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulario de Registro de Negocio -->
+          <form id="registroNegocioForm">
+            <div class="mb-3">
+              <label for="nombreNegocio" class="form-label">Nombre del Negocio</label>
+              <input type="text" class="form-control" id="nombreNegocio" required>
+            </div>
+            <div class="mb-3">
+              <label for="direccionNegocio" class="form-label">Dirección</label>
+              <input type="text" class="form-control" id="direccionNegocio" required>
+            </div>
+            <div class="mb-3">
+              <label for="telefonoNegocio" class="form-label">Teléfono</label>
+              <input type="text" class="form-control" id="telefonoNegocio" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('load', function () {
+      var myModal = new bootstrap.Modal(document.getElementById('registroNegocioModal'), {
+        keyboard: false // Opcional, puedes desactivar la tecla ESC si lo deseas
+      });
+  
+      myModal.show(); // Esto abrirá el modal automáticamente al cargar la página
+    });
+  </script>
+  <script>
+    // Cuando el formulario sea enviado, cerramos el modal
+    document.getElementById('registroNegocioForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Evitar el envío del formulario (para fines de prueba)
+  
+      // Aquí puedes agregar validaciones y lógica de backend
+  
+      // Cerrar el modal
+      var myModal = bootstrap.Modal.getInstance(document.getElementById('registroNegocioModal'));
+      myModal.hide(); // Cierra el modal
+  
+      // Opcional: Limpiar el formulario si es necesario
+      document.getElementById('registroNegocioForm').reset();
+  
+      // Mostrar una alerta o notificación de éxito
+      alert('Negocio registrado exitosamente!');
+    });
+  </script>
+<!--FINAL DEL modal registro de negocio primera vez-->
     <!--Header del moderador-->
     <header class="text-white py-3">
         <!--Logo del software-->
