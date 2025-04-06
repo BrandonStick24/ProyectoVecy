@@ -44,6 +44,16 @@ Route::get('/Moderador/NegociosBloqueados', function () {
 // Crear producto
 Route::get('/productos/create', [ProductoController::class, 'create'])->name('productos.create');
 
+Route::get('/productos/{producto}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
+Route::post('/productos', [ProductoController::class, 'store'])
+     ->name('vendedor.productos.store'); // Nombre exacto
+
+Route::post('/vendedor/productos', [ProductoController::class, 'store'])
+->name('vendedor.productos.store');
+
+// RUTAS PARA VENDEDOR (tu sección)
+Route::get('/vendedor', [VendedorController::class, 'indexVendedor'])->name('vendedor.index');
+
 // Editar producto
 Route::get('/productos/{producto}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
 
@@ -94,3 +104,11 @@ Route::get('/registro-usuario', function () {
 Route::get('/prueba-bd', function () {
     return DB::select('SHOW TABLES');
 });
+
+
+// Rutas de vendedores y productos
+//Route::get('/vendedor', [VendedorController::class, 'index'])->name('vendedor.index');
+Route::resource('productos', ProductoController::class)->except(['show']);
+//Route::delete('/productos/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
+Route::delete('/vendedor/productos/{producto}', [ProductoController::class, 'destroy'])
+    ->name('vendedor.productos.destroy');
