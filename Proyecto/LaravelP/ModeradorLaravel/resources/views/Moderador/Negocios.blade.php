@@ -20,7 +20,7 @@
         <ul>
           <h6>PRINCIPAL</h6>
           <li class="nav-item">
-            <a href="{{ url('index') }}">
+            <a href="{{ url('Moderador/indexModerador') }}">
               <i class="bi bi-house-fill"></i> Inicio
             </a>
           </li>
@@ -117,12 +117,18 @@
                         @endif
                       </td>
                       <td>
-                        <a href=""">
-                          <button class="botonAccion">
-                            Ver info
-                          </button>
-                        </a>
-                      </td>
+                            <button class="botonAccion"
+                              onclick="mostrarInfoModal(this)"
+                              data-nit="{{ $negocio->pknit_neg }}"
+                              data-nombre="{{ $negocio->nom_neg }}"
+                              data-propietario="{{ $negocio->usuario->pri_nom }} {{ $negocio->usuario->pri_ape }} {{ $negocio->usuario->seg_ape }}"
+                              data-direccion="{{ $negocio->dir_neg }}"
+                              data-telefono="{{ $negocio->tel_neg }}"
+                              data-descripcion="{{ $negocio->desc_neg }}"
+                              data-estado="{{ $negocio->estado }}">
+                              Ver info
+                            </button>
+                          </td>
                     </tr>
                   @empty
                     <tr>
@@ -131,6 +137,39 @@
                   @endforelse
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Información del Negocio -->
+    <div class="modal fade" id="modalInfoNegocio" tabindex="-1" aria-labelledby="modalInfoLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title fw-bold" id="modalNombre"></h3>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body text-center">
+            <img id="imgNegocio" src="{{asset('Moderador/IMG/negocios.jpeg')}}" alt="">
+            <hr>
+            <p><strong>NIT:</strong> <span id="modalNIT"></span></p>
+            <p><strong>Propietario:</strong> <span id="modalPropietario"></span></p>
+            <p><strong>Descripción:</strong> <span id="modalDescripcion"></span></p>
+            <p><strong>Estado:</strong> <span id="modalEstado"></span></p>
+          </div>
+          <div class="modal-footer">
+            <div class="botonesModal">
+                <button class="estiloBotonModal me-2">
+                    Bloquear
+                </button>
+                <button class="estiloBotonModal me-2">
+                    Eliminar
+                </button>
+                <button class="estiloBotonModal me-2">
+                    Suspender
+                </button>
             </div>
           </div>
         </div>
@@ -152,9 +191,8 @@
     </footer>
 
     <!-- Bootstrap JS -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('Moderador/JS/busquedaNeg.js') }}"></script>
+    <script src="{{asset('Moderador/JS/ModalInfoNegocio.js')}}"></script>
   </body>
 </html>

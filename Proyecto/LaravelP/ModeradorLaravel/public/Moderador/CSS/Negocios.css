@@ -168,3 +168,51 @@ p{
     color: white;
     border: none;
 }
+.modal-body {
+    color: #000 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+  .modal-header {
+    background-color: #55AD9B;
+    color: white;
+    justify-content: center;
+    position: relative;
+  }
+
+  .modal-title {
+    width: 100%;
+    text-align: center;
+  }
+
+.modal-header .btn-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+#imgNegocio {
+    width: 200px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+hr{
+    margin-top: 5px;
+    color: #55AD9B;
+    margin-bottom: 10px;
+}
+.botonesModal {
+    display: flex;
+    position: relative;
+    right: 20%;
+}
+.estiloBotonModal {
+    background-color: #55AD9B;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    padding: 5px;
+}
