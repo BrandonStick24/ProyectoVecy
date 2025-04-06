@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Negocio;
 
 class NegocioController extends Controller
 {
@@ -11,7 +12,8 @@ class NegocioController extends Controller
      */
     public function index()
     {
-        //
+        $negocios = Negocio::with('propietario.usuario')->get();
+        return view('negocios.index', compact('negocios'));
     }
 
     /**
@@ -27,7 +29,19 @@ class NegocioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'pknit_neg' => 'required|string|unique:negocios,pknit_neg',
+            'nom_neg' => 'required|string',
+            'direcc_neg' => 'required|string',
+            'desc_neg' => 'nullable|string',
+            'fkid_mun' => 'required|integer',
+            'fkt_doc' => 'required|string',
+            'fkid_usuario' => 'required|integer',
+        ]);
+
+        $negocio = Negocio::create($request->all());
+
+        return response()->json($negocio, 201);
     }
 
     /**
@@ -62,3 +76,4 @@ class NegocioController extends Controller
         //
     }
 }
+

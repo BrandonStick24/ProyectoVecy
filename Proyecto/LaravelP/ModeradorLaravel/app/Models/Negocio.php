@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Tipo_doc;
 use App\Models\Usuario;
 use App\Models\Municipio;
+use App\Models\Propietario;
 class Negocio extends Model
 {
     protected $table = 'negocios';
@@ -27,4 +28,8 @@ class Negocio extends Model
     public function municipios(){
         return $this->belongsTo(Municipio::class, 'fkid_mun', 'pkid_mun');
     }
+    public function propietario()
+{
+    return $this->belongsTo(Propietario::class, 'fkt_doc', 'pkfkt_doc');
+}
 }
