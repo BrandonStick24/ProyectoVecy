@@ -1,22 +1,25 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VendedorController;
+use App\Http\Controllers\ProductoController;
 
+// Rutas básicas
 Route::get('/', function () {
     return view('welcome');
 });
-
-use Illuminate\Support\Facades\DB;
 
 Route::get('/prueba-bd', function () {
     return DB::select('SHOW TABLES');
 });
 
+// RUTAS PARA VENDEDOR (tu sección)
+Route::get('/vendedor', [VendedorController::class, 'indexVendedor'])->name('vendedor.index');
 
-use App\Http\Controllers\VendedorController;
-use App\Http\Controllers\ProductoController;
+// RUTAS PARA PRODUCTOS (compartidas)
+Route::resource('productos', ProductoController::class)->parameters([
+    'productos' => 'producto:pkid_prod'
+])->except(['index']); // Excluye el index si está siendo usado por otro dev
 
-
-Route::get('/vendedor', [VendedorController::class, 'index'])->name('vendedor.index');
-Route::resource('productos', ProductoController::class)->except(['show']);
-Route::delete('/productos/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
+// Si necesitas un index alternativo para productos
+Route::get('/productos-vendedor', [ProductoController::class, 'indexVendedor'])->name('productos.vendedor.index');

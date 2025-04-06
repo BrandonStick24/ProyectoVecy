@@ -105,13 +105,13 @@
                                     <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar">
                                         <i class="bi bi-pen-fill"></i> Editar
                                     </a>
-                                    <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" style="display:inline;">
-                                        @csrf
+                                    @foreach($productos as $producto)
+                                    <form action="{{ route('productos.destroy', ['producto' => $producto->id]) }}" method="POST">
+                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="bi bi-trash3-fill"></i> Eliminar
-                                        </button>
+                                        <button type="submit">Eliminar</button>
                                     </form>
+                                    @endforeach
                                 </td>
                             </tr>
                             @empty
