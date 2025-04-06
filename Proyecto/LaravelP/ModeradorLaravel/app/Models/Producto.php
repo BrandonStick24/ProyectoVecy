@@ -18,6 +18,10 @@ class Producto extends Model
         'fkid_t_prod'
     ];
 
+    protected $casts = [
+        'est_prod' => 'boolean',
+        'pre_prod' => 'float',
+    ];
     // Si necesitas relaciones
     public function tipoProducto()
     {
