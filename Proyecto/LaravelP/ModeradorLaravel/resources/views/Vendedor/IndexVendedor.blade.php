@@ -94,10 +94,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Ejemplo de fila (después lo llenaremos con datos reales) -->
+                            @forelse($productos as $producto)
                             <tr>
-                                <td>1</td>
-                                <td>Libra de arroz Diana</td>
+                                <td>{{ $producto->id }}</td>
+                                <td>{{ $producto->nombre }}</td>
                                 <td>
                                     <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalDetalles">
                                         <i class="bi bi-info-circle"></i> Detalles
@@ -105,11 +105,20 @@
                                     <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar">
                                         <i class="bi bi-pen-fill"></i> Editar
                                     </a>
-                                    <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalBorrar">
-                                        <i class="bi bi-trash3-fill"></i> Borrar
-                                    </a>
+                                    <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="bi bi-trash3-fill"></i> Eliminar
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
+                            @empty
+                            <tr>
+                                <td colspan="3" class="text-center">No hay productos registrados</td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
