@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Http\Controllers; // ¡Esto es esencial!
+namespace App\Http\Controllers;
+
+use App\Models\Producto;  // Importa el modelo correctamente
 
 class VendedorController extends Controller
 {
     public function index()
-    {
-        return view('vendedor.indexVendedor'); // Asegúrate de que coincida con el nombre del archivo
-    }
+{
+    $productos = \App\Models\Producto::all(); // Obtiene los productos
+    return view('Vendedor.IndexVendedor', ['productos' => $productos]); // Pasa datos a la vista
+}
 }
