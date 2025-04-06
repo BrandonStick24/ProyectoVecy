@@ -8,8 +8,8 @@ class VendedorController extends Controller
 {
     public function indexVendedor()
 {
-    $productos = \App\Models\Producto::all(); // Obtiene los productos
-    return view('Vendedor.IndexVendedor', ['productos' => $productos]); // Pasa datos a la vista
+    $productos = Producto::all(); 
+    
     return view('Vendedor.IndexVendedor', compact('productos')); 
 }
 }
