@@ -42,7 +42,7 @@ Route::get('/negocios', function () {
 });
 
 // Rutas de vendedores y productos
-Route::get('/vendedor', [VendedorController::class, 'index'])->name('vendedor.index');
+//Route::get('/vendedor', [VendedorController::class, 'index'])->name('vendedor.index');
 Route::resource('productos', ProductoController::class)->except(['show']);
 Route::delete('/productos/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
 
