@@ -13,6 +13,10 @@ Route::get('/prueba-bd', function () {
 });
 
 
-
 use App\Http\Controllers\VendedorController;
-Route::get('/vendedor', [VendedorController::class, 'index']);
+use App\Http\Controllers\ProductoController;
+
+
+Route::get('/vendedor', [VendedorController::class, 'index'])->name('vendedor.index');
+Route::resource('productos', ProductoController::class)->except(['show']);
+Route::delete('/productos/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
