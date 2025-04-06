@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+//jjjjj
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Rol;
 use App\Models\Tipo_doc;
