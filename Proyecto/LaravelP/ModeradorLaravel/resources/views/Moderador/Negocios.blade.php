@@ -5,19 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="{{ asset('CSS/Negocios.css') }}" />
+      rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ asset('Moderador/CSS/Negocios.css') }}" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
     <title>Negocios | VECY</title>
   </head>
   <body>
     <div class="contenido_vecy">
       <nav class="menu_vecy">
-        <img id="img_vecy" src="{{ asset('IMG/logo.png') }}" alt="Logo VECY" />
+        <img id="img_vecy" src="{{ asset('Moderador/IMG/logo.png') }}" alt="Logo VECY" />
         <hr />
         <ul>
           <h6>PRINCIPAL</h6>
@@ -71,8 +69,8 @@
               <div class="col-md-6">
                 <div class="search-container">
                   <div class="input-group">
-                    <input type="text" class="form-control search-input" placeholder="Buscar..." />
-                    <button class="colorIcono" type="button">
+                    <input id="barraBusqueda" type="text" class="form-control search-input" placeholder="Buscar..." />
+                    <button class="colorIcono" type="button" id="botonBuscar">
                       <i class="bi bi-search"></i>
                     </button>
                     <button class="colorIcono" type="button">
@@ -87,13 +85,12 @@
           <!-- Tabla de negocios -->
           <div class="row justify-content-center">
             <div class="col-md-11">
-              <table class="table table-bordered table-hover Negocios">
+              <table id="tablaNegocios" class="table table-bordered table-hover Negocios">
                 <thead class="table-dark">
                   <tr>
                     <th>NIT</th>
                     <th>Nombre</th>
                     <th>Propietario</th>
-                    <th>Teléfono</th>
                     <th>Estado</th>
                     <th>Acción</th>
                   </tr>
@@ -103,10 +100,9 @@
                     <tr>
                       <td>{{ $negocio->pknit_neg }}</td>
                       <td>{{ $negocio->nom_neg }}</td>
-                     <td>
-  {{ $negocio->propietario->usuario->pri_nom ?? '' }} {{ $negocio->propietario->usuario->pri_ape ?? '' }}
-</td>
-                      <td>{{ $negocio->telefono ?? 'No definido' }}</td>
+                      <td>
+                        {{ $negocio->usuario->pri_nom ?? '' }} {{ $negocio->usuario->pri_ape ?? '' }} {{$negocio->usuario->seg_ape ?? ''}}
+                      </td>
                       <td>
                         @if ($negocio->estado === 'activo')
                           <span class="badge bg-success">Activo</span>
@@ -121,8 +117,10 @@
                         @endif
                       </td>
                       <td>
-                        <a href="/negocios/{{ $negocio->pknit_neg }}" class="btn btn-sm btn-info">
-                          <i class="bi bi-eye"></i> Ver info
+                        <a href=""">
+                          <button class="botonAccion">
+                            Ver info
+                          </button>
                         </a>
                       </td>
                     </tr>
@@ -157,5 +155,6 @@
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     ></script>
+    <script src="{{ asset('Moderador/JS/busquedaNeg.js') }}"></script>
   </body>
 </html>

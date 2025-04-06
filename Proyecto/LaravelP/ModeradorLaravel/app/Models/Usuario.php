@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Rol;
 use App\Models\Tipo_doc;
-use App\Models\Municipio;
+use App\Models\Negocio;
+use App\Models\Propietario;
 class Usuario extends Model
 {
     protected $table = 'usuarios';
@@ -17,12 +18,15 @@ class Usuario extends Model
         'correo_elec', 'password', 'fkid_rol','fkid_mun'
     ];
     public function tipo_documento(){
-        return $this->belongsTo(Tipo_doc::class, 'pkfkt_doc', 'pkt_doc');
+        return $this->belongsToMany(Tipo_doc::class, 'propietarios');
     }
-    public function roles(){
-        return $this->belongsTo(Rol::class, 'fkid_rol', 'pkid_rol');
+    public function rol(){
+        return $this->belongsTo(Rol::class, 'fkid_rol','pkid_rol');
     }
-    public function municipios(){
-        return $this->belongsTo(Municipio::class, 'fkid_mun', 'pkid_mun');
+    public function negocios(){
+        return $this->hasMany(Negocio::class, 'fkid_usuario', 'pkid_usuario');
     }
+    public function propietario(){
+    return $this->hasOne(Propietario::class, 'pkfkid_usuario', 'pkid_usuario');
+}
 }

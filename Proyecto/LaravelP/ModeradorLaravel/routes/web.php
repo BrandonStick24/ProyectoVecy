@@ -18,7 +18,7 @@ Route::get('/prueba-bd', function () {
 
 // Ruta para mostrar los negocios y pasar los datos a la vista
 Route::get('/negocios', function () {
-    $negocios = Negocio::with('propietario')->get(); // Asegúrate de que la relación esté definida
+    $negocios = Negocio::with('propietario.usuario', 'propietario.tipo_documento')->get();
     return view('Moderador.Negocios', compact('negocios'));
 });
 
