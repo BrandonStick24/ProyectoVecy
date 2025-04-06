@@ -93,33 +93,42 @@
                                 <th>Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @forelse($productos as $producto)
-                            <tr>
-                                <td>{{ $producto->id }}</td>
-                                <td>{{ $producto->nombre }}</td>
-                                <td>
-                                    <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalDetalles">
-                                        <i class="bi bi-info-circle"></i> Detalles
-                                    </a>
-                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar">
-                                        <i class="bi bi-pen-fill"></i> Editar
-                                    </a>
-                                    @foreach($productos as $producto)
-                                    <form action="{{ route('productos.destroy', ['producto' => $producto->id]) }}" method="POST">
-                                         @csrf
-                                        @method('DELETE')
-                                        <button type="submit">Eliminar</button>
-                                    </form>
-                                    @endforeach
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="3" class="text-center">No hay productos registrados</td>
-                            </tr>
-                            @endforelse
-                        </tbody>
+                        @forelse($productos as $producto)
+    <tr>
+        <td>{{ $producto->pkid_prod }}</td> <!-- Cambiado de id a pkid_prod -->
+        <td>{{ $producto->nom_prod }}</td> <!-- Cambiado de nombre a nom_prod -->
+        <td>
+            <!-- Botón Detalles (con data-producto) -->
+            <a href="#" class="btn btn-dark" 
+               data-bs-toggle="modal" 
+               data-bs-target="#modalDetalles"
+               data-producto="{{ json_encode($producto) }}">
+               <i class="bi bi-info-circle"></i> Detalles
+            </a>
+
+            <!-- Botón Editar (con data-producto) -->
+            <a href="#" class="btn btn-primary" 
+               data-bs-toggle="modal" 
+               data-bs-target="#modalEditar"
+               data-producto="{{ json_encode($producto) }}">
+               <i class="bi bi-pen-fill"></i> Editar
+            </a>
+
+            <!-- Formulario Eliminar (sin foreach, clase btn-eliminar) -->
+            <form action="{{ route('vendedor.productos.destroy', $producto->pkid_prod) }}" method="POST" class="d-inline">
+                 @csrf
+                 @method('DELETE')
+                <button type="submit" class="btn btn-danger">
+                    <i class="bi bi-trash"></i> Eliminar
+                </button>
+            </form>
+        </td>
+    </tr>
+@empty
+    <tr>
+        <td colspan="3" class="text-center">No hay productos registrados</td>
+    </tr>
+@endforelse
                     </table>
                 </div>
             </div>

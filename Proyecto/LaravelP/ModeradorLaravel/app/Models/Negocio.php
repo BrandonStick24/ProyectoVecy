@@ -27,4 +27,8 @@ class Negocio extends Model
     public function municipios(){
         return $this->belongsTo(Municipio::class, 'fkid_mun', 'pkid_mun');
     }
+    public function productos()
+    {
+    return $this->hasMany(Producto::class, 'fknit_neg', 'pknit_neg');
+    }
 }
