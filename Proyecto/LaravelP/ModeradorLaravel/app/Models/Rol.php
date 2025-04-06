@@ -14,6 +14,7 @@ class Rol extends Model
         'desc_rol'
     ];
 
+    //Relaciones.
     public function usuarios(){
         return $this->hasMany(Usuario::class, 'fkid_rol', 'pkid_rol');
     }

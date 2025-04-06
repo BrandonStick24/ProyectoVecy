@@ -7,6 +7,7 @@ use App\Models\Tipo_doc;
 use App\Models\Usuario;
 use App\Models\Municipio;
 use App\Models\Propietario;
+
 class Negocio extends Model
 {
     protected $table = 'negocios';
@@ -22,21 +23,16 @@ class Negocio extends Model
     public function tipo_documento(){
         return $this->belongsTo(Tipo_doc::class, 'fkt_doc', 'pkt_doc');
     }
-    public function usuarios(){
+
+    public function usuario(){
         return $this->belongsTo(Usuario::class, 'fkid_usuario', 'pkid_usuario');
     }
-    public function municipios(){
+
+    public function municipio(){
         return $this->belongsTo(Municipio::class, 'fkid_mun', 'pkid_mun');
     }
-    
-    public function productos()
-    {
-    return $this->hasMany(Producto::class, 'fknit_neg', 'pknit_neg');
-    }
 
-    public function propietario()
-    {
-    return $this->belongsTo(Propietario::class, 'fkt_doc', 'pkfkt_doc');
+    public function propietario(){
+        return $this->hasOne(Propietario::class, 'pkfkid_usuario', 'fkid_usuario');
     }
-
 }

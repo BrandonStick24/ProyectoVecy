@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/estilosNovedades.css') }}">
     <title>Dashboard del Vendedor - VECY</title>
 </head>
+
 <body>
     <!-- Header -->
     <header class="text-white py-3">
@@ -19,8 +21,8 @@
             <h4 class="h4">VECY</h4>
             <!-- Dropdown Sesión -->
             <div class="dropdown">
-                <i id="iconoPerson" type="button" class="bi bi-person-fill display-6 iconoPerson" 
-                   data-bs-toggle="dropdown" aria-expanded="false"></i>
+                <i id="iconoPerson" type="button" class="bi bi-person-fill display-6 iconoPerson"
+                    data-bs-toggle="dropdown" aria-expanded="false"></i>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Configurar Negocio</a></li>
                     <li><a class="dropdown-item" href="#">Configurar Perfil</a></li>
@@ -94,41 +96,38 @@
                             </tr>
                         </thead>
                         @forelse($productos as $producto)
-    <tr>
-        <td>{{ $producto->pkid_prod }}</td> <!-- Cambiado de id a pkid_prod -->
-        <td>{{ $producto->nom_prod }}</td> <!-- Cambiado de nombre a nom_prod -->
-        <td>
-            <!-- Botón Detalles (con data-producto) -->
-            <a href="#" class="btn btn-dark" 
-               data-bs-toggle="modal" 
-               data-bs-target="#modalDetalles"
-               data-producto="{{ json_encode($producto) }}">
-               <i class="bi bi-info-circle"></i> Detalles
-            </a>
+                            <tr>
+                                <td>{{ $producto->pkid_prod }}</td> <!-- Cambiado de id a pkid_prod -->
+                                <td>{{ $producto->nom_prod }}</td> <!-- Cambiado de nombre a nom_prod -->
+                                <td>
+                                    <!-- Botón Detalles (con data-producto) -->
+                                    <a href="#" class="btn btn-dark" data-bs-toggle="modal"
+                                        data-bs-target="#modalDetalles" data-producto="{{ json_encode($producto) }}">
+                                        <i class="bi bi-info-circle"></i> Detalles
+                                    </a>
 
-            <!-- Botón Editar (con data-producto) -->
-            <a href="#" class="btn btn-primary" 
-               data-bs-toggle="modal" 
-               data-bs-target="#modalEditar"
-               data-producto="{{ json_encode($producto) }}">
-               <i class="bi bi-pen-fill"></i> Editar
-            </a>
+                                    <!-- Botón Editar (con data-producto) -->
+                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#modalEditar" data-producto="{{ json_encode($producto) }}">
+                                        <i class="bi bi-pen-fill"></i> Editar
+                                    </a>
 
-            <!-- Formulario Eliminar (sin foreach, clase btn-eliminar) -->
-            <form action="{{ route('vendedor.productos.destroy', $producto->pkid_prod) }}" method="POST" class="d-inline">
-                 @csrf
-                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">
-                    <i class="bi bi-trash"></i> Eliminar
-                </button>
-            </form>
-        </td>
-    </tr>
-@empty
-    <tr>
-        <td colspan="3" class="text-center">No hay productos registrados</td>
-    </tr>
-@endforelse
+                                    <!-- Formulario Eliminar (sin foreach, clase btn-eliminar) -->
+                                    <form action="{{ route('vendedor.productos.destroy', $producto->pkid_prod) }}"
+                                        method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="bi bi-trash"></i> Eliminar
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="3" class="text-center">No hay productos registrados</td>
+                            </tr>
+                        @endforelse
                     </table>
                 </div>
             </div>
@@ -149,4 +148,5 @@
     <script src="{{ asset('js/crudnegocio.js') }}"></script>
     <script src="{{ asset('js/botones.js') }}"></script>
 </body>
+
 </html>
