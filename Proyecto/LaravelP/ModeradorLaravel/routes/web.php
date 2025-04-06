@@ -6,6 +6,10 @@ use App\Http\Controllers\VendedorController;
 use App\Http\Controllers\ProductoController;
 use App\Models\Negocio;
 
+// Ruta raíz (página principal)
+Route::get('/', function () {
+    return view('RegistroVecy.RegistroUsuario');
+});
 /*
 |--------------------------------------------------------------------------
 | Rutas para moderador
@@ -14,7 +18,7 @@ use App\Models\Negocio;
 
 // Página de inicio del moderador
 Route::get('/Moderador/indexModerador', function () {
-    $cantidadNegocios = Negocio::count(); // Contar negocios desde la BD
+    $cantidadNegocios = Negocio::count();
     return view('Moderador.indexModerador', compact('cantidadNegocios'));
 })->name('moderador.index');
 
@@ -23,6 +27,13 @@ Route::get('/negocios', function () {
     $negocios = Negocio::with('propietario.usuario', 'propietario.tipo_documento')->get();
     return view('Moderador.Negocios', compact('negocios'));
 })->name('negocios');
+
+// Vista de los negocios bloqueados
+Route::get('/Moderador/NegociosBloqueados', function () {
+    $negociosBloqueados = Negocio::where('estado', 'bloqueado')->with('propietario.usuario')->get();
+    return view('Moderador.negociosBloqueados', compact('negociosBloqueados'));
+})->name('NegociosBloqueados');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,10 +57,11 @@ Route::delete('/productos/{producto}', [ProductoController::class, 'destroy'])->
 Route::resource('productos', ProductoController::class)->parameters([
     'productos' => 'producto:pkid_prod'
 ])->names([
-    'store' => 'vendedor.productos.store',
-    'update' => 'vendedor.productos.update',
+    'store'   => 'vendedor.productos.store',
+    'update'  => 'vendedor.productos.update',
     'destroy' => 'vendedor.productos.destroy',
 ])->except(['index', 'show']);
+
 
 /*
 |--------------------------------------------------------------------------
@@ -59,9 +71,23 @@ Route::resource('productos', ProductoController::class)->parameters([
 
 Route::get('/vendedor', [VendedorController::class, 'indexVendedor'])->name('vendedor.index');
 
+
 /*
 |--------------------------------------------------------------------------
-| Prueba de conexión a la BD
+| Rutas públicas
+|--------------------------------------------------------------------------
+*/
+
+// Formulario de registro de usuario
+Route::get('/registro-usuario', function () {
+    return view('RegistroVecy.RegistroUsuario');
+})->name('registro.usuario');
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Ruta de prueba de conexión a la base de datos
 |--------------------------------------------------------------------------
 */
 

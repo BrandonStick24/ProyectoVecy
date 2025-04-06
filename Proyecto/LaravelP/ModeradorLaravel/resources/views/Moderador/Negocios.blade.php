@@ -29,7 +29,7 @@
               <i class="bi bi-shop"></i> Negocios
             </a>
             <ul class="dropdown-menu">
-              <li><i class="bi bi-lock-fill"></i><a href="{{ url('NegociosBloqueados') }}">Bloqueados</a></li>
+                <a href="{{ url('Moderador/NegociosBloqueados') }}">Bloqueados</a>
               <li><i class="bi bi-stop-circle-fill"></i><a href="{{ url('NegociosSuspendidos') }}">Suspendidos</a></li>
               <li><i class="bi bi-exclamation-triangle-fill"></i><a href="{{ url('UsuariosReportados') }}">Reportados</a></li>
             </ul>

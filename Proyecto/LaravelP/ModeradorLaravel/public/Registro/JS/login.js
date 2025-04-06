@@ -4,7 +4,7 @@ const passwordInput = document.getElementById('password');
 const errorMessage = document.getElementById('error-message');
 
 loginForm.addEventListener('submit', function(event) {
-  event.preventDefault(); 
+  event.preventDefault();
 
   if (emailInput.value === '' || passwordInput.value === '') {
     errorMessage.style.display = 'block';
@@ -12,19 +12,19 @@ loginForm.addEventListener('submit', function(event) {
     return;
   }
 
-  // Validar usuarios con datos fijos
+  // Usuarios con rutas hacia las vistas Blade
   const usuariosFijos = [
-    { correo: 'moderador@correo.com', password: '123456', redireccion: 'Principal.html' },
-    { correo: 'prueba1@correo.com', password: '123456', redireccion: 'VendedorDash.html' },
-    { correo: 'cliente1@correo.com', password: '123456', redireccion: 'ClienteDASH.html' }
+    { correo: 'moderador@correo.com', password: '123456', redireccion: '/moderador/inicio' },
+    { correo: 'prueba1@correo.com', password: '123456', redireccion: '/vendedor/dashboard' },
+    { correo: 'cliente1@correo.com', password: '123456', redireccion: '/cliente/dashboard' }
   ];
 
-  const usuario = usuariosFijos.find(usuario => 
+  const usuario = usuariosFijos.find(usuario =>
     usuario.correo === emailInput.value && usuario.password === passwordInput.value
   );
 
   if (usuario) {
-    window.location.href = usuario.redireccion; // Redirige según la página asociada
+    window.location.href = usuario.redireccion; // Redirige a la ruta de Laravel
   } else {
     errorMessage.style.display = 'block';
     errorMessage.textContent = 'Correo o contraseña incorrectos';
