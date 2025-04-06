@@ -15,10 +15,12 @@ class TipouSeeder extends Seeder
     public function run(): void
     {
         DB::table('usuarios')->inset([
-            'Nombre'=> 'Nicolas'
-            'Apellido'=> 'Mendoza'
-            'Correo'=> 'Nico@correo.com'
-            'Contraseña'=> Hash::make('nico1234')
+            'pri_nom'=> 
+            'seg_nom'=>
+            'pri_ape'=> 
+            'seg_ape'=>
+            'Correo_elec'=> 
+            'password'=> Hash::make
         ]);
     }
 }
