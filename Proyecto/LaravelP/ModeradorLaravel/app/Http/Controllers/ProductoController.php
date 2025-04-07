@@ -16,23 +16,31 @@ class ProductoController extends Controller
 
     public function store(Request $request)
     {
+        // Validar los datos del formulario
         $validated = $request->validate([
-            'nom_prod' => 'required|string|max:255',
-            'pre_prod' => 'required|numeric|min:0',
-            'desc_prod' => 'nullable|string',
-            'fkid_t_prod' => 'required|integer|exists:tipos_producto,pkid_t_prod',
-            'est_prod' => 'sometimes|boolean'
+            'nom_prod' => 'required|string|max:255',  // Validación de nombre
+            'pre_prod' => 'required|numeric|min:0',   // Validación de precio (numérico y mayor o igual a 0)
+            'fkid_t_prod' => 'required|exists:tipos_productos,pkid_t_prod', // Validación del tipo de producto
+            'desc_prod' => 'nullable|string',         // Descripción opcional
+            'est_prod' => 'required|boolean',         // Estado del producto
+            // No es necesario validar fknit_neg ya que se asigna automáticamente
         ]);
-
+    
         try {
             // Asignación automática del negocio
             $validated['fknit_neg'] = auth()->user()->negocio_id;
-
+    
+            // Verificar si los datos son válidos y no están vacíos
+            if (empty($validated['nom_prod']) || empty($validated['pre_prod']) || empty($validated['fkid_t_prod'])) {
+                return back()->withInput()->with('error', 'Todos los campos obligatorios deben ser completados.');
+            }
+    
+            // Crear el producto
             Producto::create($validated);
-
+    
             return redirect()->route('vendedor.index')
                 ->with('success', 'Producto creado exitosamente');
-
+    
         } catch (\Exception $e) {
             return back()->withInput()
                 ->with('error', 'Error al crear el producto: ' . $e->getMessage());
