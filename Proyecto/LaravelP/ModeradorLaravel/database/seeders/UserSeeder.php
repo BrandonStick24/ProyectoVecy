@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 namespace Database\Seeders;
@@ -15,15 +14,14 @@ class TipouSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('usuarios')->inset([
-            'pri_nom'=> 
-            'seg_nom'=>
-            'pri_ape'=> 
-            'seg_ape'=>
-            'Correo_elec'=> 
-            'password'=> Hash::make
+        DB::table('usuarios')->insert([
+            'pri_nom' => 'Juan',          // Cambia estos valores por los que deseas
+            'seg_nom' => 'Carlos',        // Nombre secundario del usuario
+            'pri_ape' => 'Pérez',         // Apellido primario del usuario
+            'seg_ape' => 'Gómez',         // Apellido secundario
+            'Correo_elec' => 'juan@example.com', // Correo electrónico del usuario
+            'password' => Hash::make('mi_contraseña_segura'), // Contraseña cifrada
         ]);
     }
 }
-=======
->>>>>>> 951e675fbfd28e12ab7d7fcef52b30f5b9ac53d3
+

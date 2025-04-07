@@ -30,6 +30,6 @@ class Producto extends Model
     
     public function negocio()
     {
-        return $this->belongsTo(Negocio::class, 'fknit_neg');
+        return $this->belongsTo(Negocio::class, 'fknit_neg','pknit_neg');
     }
 }

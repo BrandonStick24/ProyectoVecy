@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Models\Negocio;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Models\Producto;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,6 +92,38 @@ Route::middleware(['auth'])->group(function () {
             ->except(['index', 'show']);
     });
 });
+/*
+|--------------------------------------------------------------------------
+| Rutas para Pruebas Vendedor
+|--------------------------------------------------------------------------
+*/
+// Dashboard de pruebaV
+/*Route::get('/pruebaV', function () {
+    // Lógica para mostrar el dashboard
+    return view('Vendedor.IndexVendedor'); // Cambia 'PruebaV.index' por la vista que deseas mostrar
+})->name('pruebaV.index');/*/
+
+Route::prefix('pruebaV')->group(function () {
+    Route::resource('productos', ProductoController::class)
+        ->parameters(['productos' => 'producto:pkid_prod'])
+        ->names([
+            'create' => 'pruebaV.productos.create',
+            'store' => 'pruebaV.productos.store',
+            'edit' => 'pruebaV.productos.edit',
+            'update' => 'pruebaV.productos.update',
+            'destroy' => 'pruebaV.productos.destroy',
+        ])
+        ->except(['index', 'show']);
+});
+
+Route::get('/pruebaV', function () {
+    // Obtener todos los productos de la base de datos
+    $productos = Producto::whereNotNull('fknit_neg')->get();  
+
+    // Pasar los productos a la vista
+    return view('Vendedor.IndexVendedor', compact('productos'));  // Aquí se pasa la variable $productos
+})->name('pruebaV.index');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -118,6 +151,15 @@ Route::middleware(['auth'])->group(function () {
     })->name('negocios.bloqueados');
 });
 
+/*
+|--------------------------------------------------------------------------
+| Ruta de prueba Moderador sin logeo ni registro
+|--------------------------------------------------------------------------
+*/
+Route::get('/prueba', function () {  //Dasboard principal
+    $cantidadNegocios = \App\Models\Negocio::count();
+    return view('Moderador.indexModerador', compact('cantidadNegocios'));
+})->name('prueba');  // Ruta sin autenticación
 /*
 |--------------------------------------------------------------------------
 | Ruta de prueba de conexión a la base de datos

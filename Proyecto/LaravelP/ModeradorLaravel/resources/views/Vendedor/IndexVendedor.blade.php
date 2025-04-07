@@ -99,6 +99,7 @@
                             <tr>
                                 <td>{{ $producto->pkid_prod }}</td> <!-- Cambiado de id a pkid_prod -->
                                 <td>{{ $producto->nom_prod }}</td> <!-- Cambiado de nombre a nom_prod -->
+                                <p>Negocio: {{ $producto->negocio->nombre }}</p> 
                                 <td>
                                     <!-- Botón Detalles (con data-producto) -->
                                     <a href="#" class="btn btn-dark" data-bs-toggle="modal"
