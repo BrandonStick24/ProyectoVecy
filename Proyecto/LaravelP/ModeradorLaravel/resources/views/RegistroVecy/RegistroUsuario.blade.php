@@ -59,7 +59,7 @@
                                         <input type="checkbox" name="remember">
                                         Recuérdame
                                     </label>
-                                    <a href="#" class="forgot-password">¿Olvidó contraseña?</a>
+                                    <a href="{{ route('password.request') }}" class="forgot-password"> ¿Olvidó contraseña?</a>
                                 </div>
                                 <button type="submit" class="login-btn">Ingresar</button>
                             </form>
@@ -80,29 +80,48 @@
                             <div class="registro-logo text-center mb-4">
                                 <img src="{{ asset('Registro/IMG/WhatsApp Image 2024-11-21 at 3.45.29 PM.jpeg') }}" alt="Logo de Registro" class="img-fluid">
                             </div>
-                            <p class="registro-titulo text-center fs-4">Registro de usuarios</p>
-                            <form method="POST" action="{{ route('register') }}">
+                            <p class="registro-titulo text-center fs-4">Registro de usuarios</p>                           
+                            <form method="POST" action="{{ route('register') }}" id="registroForm">
                                 @csrf
+                                <!-- Campos obligatorios -->
                                 <div class="mb-3">
-                                    <label for="Nombre" class="form-label">Nombre</label>
-                                    <input type="text" name="name" class="form-control" placeholder="Ingresa su Nombre" required>
+                                    <label for="pri_nom" class="form-label">Nombre </label>
+                                    <input type="text" name="pri_nom" class="form-control" placeholder="" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="apellido" class="form-label">Apellido</label>
-                                    <input type="text" name="lastname" class="form-control" placeholder="Ingresa su Apellido" required>
+                                     <label for="pri_ape" class="form-label">Apellido </label>
+                                     <input type="text" name="pri_ape" class="form-control" placeholder="" required>
+                                </div>
+                                <!-- Campos ocultos (valor vacío por defecto) -->
+                                    <input type="hidden" name="seg_nom" value="">
+                                    <input type="hidden" name="seg_ape" value="">
+                                {{-- 
+                                    <!-- Campos opcionales -->
+                                <div class="mb-3">
+                                    <label for="seg_nom" class="form-label">Segundo Nombre</label>                                
+                                    <input type="text" name="seg_nom" class="form-control" placeholder="Ej: Carlos">
+                                </div> --}}
+                                {{--
+                                <div class="mb-3">
+                                    <label for="seg_ape" class="form-label">Segundo Apellido</label>                                    
+                                    <input type="text" name="seg_ape" class="form-control" placeholder="Ej: López">
+                                </div>
+                                --}}
+                                <!-- Correo y contraseña -->
+                                <div class="mb-3">
+                                    <label for="correo_elec" class="form-label">Correo Electrónico</label>
+                                    <input type="email" name="correo_elec" class="form-control" placeholder="Ej: juan@example.com" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="correo" class="form-label">Correo</label>
-                                    <input type="email" name="email" class="form-control" placeholder="Ingresa el Correo" required>
+                                    <label for="password" class="form-label">Contraseña *</label>
+                                    <input type="password" name="password" class="form-control" placeholder="Mínimo 8 caracteres" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="password" class="form-label">Contraseña</label>
-                                    <input type="password" name="password" class="form-control" placeholder="Ingrese la contraseña" required>
+                                    <label for="password_confirmation" class="form-label">Confirmar Contraseña *</label>
+                                    <input type="password" name="password_confirmation" class="form-control" placeholder="Repite la contraseña" required>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="password_confirmation" class="form-label">Confirmar contraseña</label>
-                                    <input type="password" name="password_confirmation" class="form-control" placeholder="Repita la contraseña" required>
-                                </div>
+                                <!-- Campo oculto para el rol (ej: 1 por defecto para cliente) -->
+                                
                                 <button type="submit" class="btn btn-primary w-100">Registrarse</button>
                             </form>
                         </div>
@@ -121,14 +140,16 @@
                         <p class="fs-4">Selecciona un Rol</p>
                     </div>
                     <div class="d-flex justify-content-around">
-                        <a href="dash_main copy.html" class="text-center">
+                        <!-- Botón para Cliente (rol ID = 1) -->
+                        <button class="btn btn-link text-center seleccionar-rol" data-rol="1">
                             <img src="{{ asset('img/costumer.png') }}" alt="Cliente" class="img-fluid" style="width: 80px;">
                             <p>Cliente</p>
-                        </a>
-                        <a href="VendedorDash.html" class="text-center">
-                            <img src="{{ asset('Registro/IMG/vendor (1).png') }}" alt="Vendedor" class="img-fluid" style="width: 80px; filter: grayscale(100%) brightness(2);">
+                        </button>
+                        <!-- Botón para Vendedor (rol ID = 2) -->
+                        <button class="btn btn-link text-center seleccionar-rol" data-rol="2">
+                            <img src="{{ asset('Registro/IMG/vendor (1).png') }}" alt="Vendedor" class="img-fluid" style="width: 80px;">
                             <p>Vendedor</p>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>

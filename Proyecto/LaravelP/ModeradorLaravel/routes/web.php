@@ -4,7 +4,12 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\VendedorController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Models\Negocio;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Models\Producto;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +84,41 @@ Route::resource('productos', ProductoController::class)->parameters([
 
 Route::get('/vendedor', [VendedorController::class, 'indexVendedor'])->name('vendedor.index');
 
+/*
+|--------------------------------------------------------------------------
+| Rutas para Moderador
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth'])->group(function () {
+    // Dashboard del moderador
+    Route::get('/moderador/indexModerador', function () {
+        $cantidadNegocios = Negocio::count();
+        return view('Moderador.indexModerador', compact('cantidadNegocios'));
+    })->name('moderador.index');
+
+    // Gestión de negocios
+    Route::get('/negocios', function () {
+        $negocios = Negocio::with('propietario.usuario', 'propietario.tipo_documento')->get();
+        return view('Moderador.Negocios', compact('negocios'));
+    })->name('negocios');
+
+    // Negocios bloqueados
+    Route::get('/moderador/negociosBloqueados', function () {
+        $negociosBloqueados = Negocio::where('estado', 'bloqueado')->with('propietario.usuario')->get();
+        return view('Moderador.negociosBloqueados', compact('negociosBloqueados'));
+    })->name('negocios.bloqueados');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Ruta de prueba Moderador sin logeo ni registro
+|--------------------------------------------------------------------------
+*/
+Route::get('/prueba', function () {  //Dasboard principal
+    $cantidadNegocios = \App\Models\Negocio::count();
+    return view('Moderador.indexModerador', compact('cantidadNegocios'));
+})->name('prueba');  // Ruta sin autenticación
 /*
 |--------------------------------------------------------------------------
 | Ruta de prueba de conexión a la base de datos

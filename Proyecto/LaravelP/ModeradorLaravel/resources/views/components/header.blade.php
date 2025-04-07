@@ -7,4 +7,6 @@
     @include('components.categorias')
     @include('components.tiendas_disponibles')
     @include('components.tiendas_no_disponibles')
+    @include('components.login-form')
+    @include('components.registro-form')
 @endsection
