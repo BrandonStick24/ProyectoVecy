@@ -25,22 +25,22 @@ class ProductoController extends Controller
             'est_prod' => 'required|boolean',         // Estado del producto
             // No es necesario validar fknit_neg ya que se asigna automáticamente
         ]);
-    
+
         try {
             // Asignación automática del negocio
             $validated['fknit_neg'] = auth()->user()->negocio_id;
-    
+
             // Verificar si los datos son válidos y no están vacíos
             if (empty($validated['nom_prod']) || empty($validated['pre_prod']) || empty($validated['fkid_t_prod'])) {
                 return back()->withInput()->with('error', 'Todos los campos obligatorios deben ser completados.');
             }
-    
+
             // Crear el producto
             Producto::create($validated);
-    
+
             return redirect()->route('vendedor.index')
                 ->with('success', 'Producto creado exitosamente');
-    
+
         } catch (\Exception $e) {
             return back()->withInput()
                 ->with('error', 'Error al crear el producto: ' . $e->getMessage());
@@ -80,7 +80,7 @@ class ProductoController extends Controller
             return back()->with('error', 'Error al eliminar: ' . $e->getMessage());
         }
     }
-    
+
     public function create()
     {
         $tiposProducto = TipoProducto::all();

@@ -12,7 +12,7 @@ class NegocioController extends Controller
      */
     public function index()
     {
-        $negocios = Negocio::with('usuario.propietario')->get();
+        $negocios = Negocio::with('')->get();
         return view('negocios.index', compact('negocios'));
     }
 
