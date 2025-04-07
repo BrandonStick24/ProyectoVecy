@@ -39,7 +39,10 @@
               <i class="bi bi-people-fill"></i> Usuarios
             </a>
             <ul class="dropdown-menu">
-              <li><i class="bi bi-lock-fill"></i><a href="#">Bloqueados</a></li>
+                <li>
+                    <i class="bi bi-lock-fill"></i>
+                    <a href="{{ url('Moderador/NegociosBloqueados') }}">Bloqueados</a>
+                  </li>
               <li><i class="bi bi-stop-circle-fill"></i><a href="#">Suspendidos</a></li>
               <li><i class="bi bi-exclamation-triangle-fill"></i><a href="#">Reportados</a></li>
             </ul>
