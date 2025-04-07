@@ -1,3 +1,9 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
 body {
     font-family: arial sans-serif;
     font-size: 18px;
@@ -7,7 +13,8 @@ body {
 .contenido_vecy {
     display: grid;
     grid-template-columns: 20% 80%;
-}
+    height: 100vh;
+  }
 .menu_vecy {
     background-color: #55AD9B;
     grid-column: 1;
@@ -46,7 +53,7 @@ li:hover{
     border-radius: 50%;
     grid-row: 1;
 }
-footer { 
+footer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,14 +93,14 @@ i {
 }
 .contenidoPrincipal {
     grid-column: 2;
-    display: flex;
-    justify-content: center;
-    height: 90vh;
+    display: block;
+    overflow-y: auto;
+    height: calc(100vh - 10vh);
     padding: 10px;
-    width: 100%;
-}
+    color: black;
+  }
 .nav-link.active {
-    background-color: rgba(255, 255, 255, 0.2); 
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     padding: 3px;
 }
@@ -150,6 +157,9 @@ p{
     text-align: center;
     background-color: #55AD9B;
 }
+.Negocios thead {
+    border: 1px solid #55AD9B
+}
 .botonAccion {
     border-radius: 15px;
     width: 100px;
@@ -158,3 +168,52 @@ p{
     color: white;
     border: none;
 }
+.modal-body {
+    color: #000 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+  .modal-header {
+    background-color: #55AD9B;
+    color: white;
+    justify-content: center;
+    position: relative;
+  }
+
+  .modal-title {
+    width: 100%;
+    text-align: center;
+  }
+
+.modal-header .btn-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+#imgNegocio {
+    width: 200px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+hr{
+    margin-top: 5px;
+    color: #55AD9B;
+    margin-bottom: 10px;
+}
+.botonesModal {
+    display: flex;
+    position: relative;
+    right: 20%;
+}
+.estiloBotonModal {
+    background-color: #55AD9B;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    padding: 5px;
+}
+

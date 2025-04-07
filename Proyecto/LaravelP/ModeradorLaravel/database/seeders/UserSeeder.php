@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 namespace Database\Seeders;
@@ -24,3 +25,5 @@ class TipouSeeder extends Seeder
         ]);
     }
 }
+=======
+>>>>>>> 951e675fbfd28e12ab7d7fcef52b30f5b9ac53d3
