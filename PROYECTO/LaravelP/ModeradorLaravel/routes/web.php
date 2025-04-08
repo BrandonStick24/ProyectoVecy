@@ -11,6 +11,7 @@ use App\Models\Producto;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Rutas Públicas
@@ -47,10 +48,12 @@ Route::get('/registro-usuario', function () {
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 
-// Registro
-Route::post('/register', [RegisterController::class, 'register'])->name('register');
-
-// Logout
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+/* Registro
+Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+*/// Logout
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 /*

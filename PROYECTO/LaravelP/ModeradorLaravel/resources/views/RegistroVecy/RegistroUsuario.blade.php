@@ -29,9 +29,7 @@
             </a>
 
         <!-- Botón de Registro -->
-            <a href="{{ route('register') }}" class="button-header">
-                Registro
-            </a>
+        <a href="{{ route('register') }}" class="button-header">Registro</a>
         </div>
     </header>
 
