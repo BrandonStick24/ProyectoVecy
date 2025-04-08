@@ -7,15 +7,20 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Models\Negocio;
+use App\Models\Producto;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Models\Producto;
 
 /*
 |--------------------------------------------------------------------------
 | Rutas Públicas
 |--------------------------------------------------------------------------
 */
+
+// Página de inicio (puedes ajustarla luego si quieres otra vista inicial)
+Route::get('/', function () {
+    return view('Moderador.indexModerador');
+});
 
 // Página principal
 Route::get('/dashmain', function () {
@@ -42,7 +47,7 @@ Route::get('/registro-usuario', function () {
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 
-// Registro 
+// Registro
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
 // Logout
@@ -50,34 +55,25 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 /*
 |--------------------------------------------------------------------------
-| Rutas para restablecimiento de contraseña (deben ir ANTES de las rutas auth)
+| Rutas para restablecimiento de contraseña
 |--------------------------------------------------------------------------
 */
-
 Route::prefix('password')->group(function () {
-    Route::get('/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])
-         ->name('password.request');
-    
-    Route::post('/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])
-         ->name('password.email');
-    
-    Route::get('/reset/{token}', [ResetPasswordController::class, 'showResetForm'])
-         ->name('password.reset');
-    
-    Route::post('/reset', [ResetPasswordController::class, 'reset'])
-         ->name('password.update');
+    Route::get('/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+    Route::post('/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 });
+
 /*
 |--------------------------------------------------------------------------
 | Rutas para Vendedor
 |--------------------------------------------------------------------------
 */
-
 Route::middleware(['auth'])->group(function () {
     // Dashboard del vendedor
-    Route::get('/vendedor', [VendedorController::class, 'indexVendedor'])
-        ->name('vendedor.index');
-    
+    Route::get('/vendedor', [VendedorController::class, 'indexVendedor'])->name('vendedor.index');
+
     // Productos del vendedor
     Route::prefix('vendedor')->group(function () {
         Route::resource('productos', ProductoController::class)
@@ -92,17 +88,12 @@ Route::middleware(['auth'])->group(function () {
             ->except(['index', 'show']);
     });
 });
+
 /*
 |--------------------------------------------------------------------------
 | Rutas para Pruebas Vendedor
 |--------------------------------------------------------------------------
 */
-// Dashboard de pruebaV
-/*Route::get('/pruebaV', function () {
-    // Lógica para mostrar el dashboard
-    return view('Vendedor.IndexVendedor'); // Cambia 'PruebaV.index' por la vista que deseas mostrar
-})->name('pruebaV.index');/*/
-
 Route::prefix('pruebaV')->group(function () {
     Route::resource('productos', ProductoController::class)
         ->parameters(['productos' => 'producto:pkid_prod'])
@@ -117,21 +108,15 @@ Route::prefix('pruebaV')->group(function () {
 });
 
 Route::get('/pruebaV', function () {
-    // Obtener todos los productos de la base de datos
-    $productos = Producto::whereNotNull('fknit_neg')->get();  
-
-    // Pasar los productos a la vista
-    return view('Vendedor.IndexVendedor', compact('productos'));  // Aquí se pasa la variable $productos
+    $productos = Producto::whereNotNull('fknit_neg')->get();
+    return view('Vendedor.IndexVendedor', compact('productos'));
 })->name('pruebaV.index');
-
 
 /*
 |--------------------------------------------------------------------------
 | Rutas para Moderador
 |--------------------------------------------------------------------------
 */
-
-Route::middleware(['auth'])->group(function () {
     // Dashboard del moderador
     Route::get('/moderador/indexModerador', function () {
         $cantidadNegocios = Negocio::count();
@@ -149,23 +134,22 @@ Route::middleware(['auth'])->group(function () {
         $negociosBloqueados = Negocio::where('estado', 'bloqueado')->with('propietario.usuario')->get();
         return view('Moderador.negociosBloqueados', compact('negociosBloqueados'));
     })->name('negocios.bloqueados');
-});
 
 /*
 |--------------------------------------------------------------------------
 | Ruta de prueba Moderador sin logeo ni registro
 |--------------------------------------------------------------------------
 */
-Route::get('/prueba', function () {  //Dasboard principal
-    $cantidadNegocios = \App\Models\Negocio::count();
+Route::get('/prueba', function () {
+    $cantidadNegocios = Negocio::count();
     return view('Moderador.indexModerador', compact('cantidadNegocios'));
-})->name('prueba');  // Ruta sin autenticación
+})->name('prueba');
+
 /*
 |--------------------------------------------------------------------------
 | Ruta de prueba de conexión a la base de datos
 |--------------------------------------------------------------------------
 */
-
 Route::get('/prueba-bd', function () {
     return DB::select('SHOW TABLES');
 });

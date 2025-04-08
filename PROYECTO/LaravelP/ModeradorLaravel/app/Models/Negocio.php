@@ -17,18 +17,26 @@ class Negocio extends Model
 
     protected $fillable = [
         'pknit_neg', 'nom_neg', 'direcc_neg', 'desc_neg',
-        'fkid_mun', 'fkt_doc', 'fkid_usuario'
+        'fkid_mun', 'fkt_doc', 'fkid_usuario', 'fkid_prop'
     ];
 
-    public function tipo_documento(){
+    public function tipo_documento()
+    {
         return $this->belongsTo(Tipo_doc::class, 'fkt_doc', 'pkt_doc');
     }
 
-    public function usuario(){
+    public function usuario()
+    {
         return $this->belongsTo(Usuario::class, 'fkid_usuario', 'pkid_usuario');
     }
 
-    public function municipio(){
+    public function municipio()
+    {
         return $this->belongsTo(Municipio::class, 'fkid_mun', 'pkid_mun');
+    }
+
+    public function propietario()
+    {
+        return $this->belongsTo(Propietario::class, 'fkid_prop', 'pkid_prop');
     }
 }

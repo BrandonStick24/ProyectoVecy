@@ -20,7 +20,7 @@
         <ul>
           <h6>PRINCIPAL</h6>
           <li class="nav-item">
-            <a href="{{ url('Moderador/indexModerador') }}">
+            <a href="{{ route('moderador.index') }}">
               <i class="bi bi-house-fill"></i> Inicio
             </a>
           </li>

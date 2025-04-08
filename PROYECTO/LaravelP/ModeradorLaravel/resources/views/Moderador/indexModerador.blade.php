@@ -25,7 +25,7 @@
                         <i class="bi bi-shop"></i> Negocios
                     </a>
                     <ul class="dropdown-menu">
-                        <a href="{{ url('Moderador/NegociosBloqueados') }}">Bloqueados</a>
+                        <a href="{{ route('negocios.bloqueados') }}">Bloqueados</a>
                         <li><i class="bi bi-stop-circle-fill"></i><a href="{{ url('NegociosSuspendidos') }}">Suspendidos</a></li>
                         <li><i class="bi bi-exclamation-triangle-fill"></i><a href="{{ url('NegociosReportados') }}">Reportados</a></li>
                     </ul>
@@ -69,7 +69,7 @@
                                 <a href="{{ route('negocios') }}" class="botonCard">Ver negocios</a>
                                 <div class="card-footer">
                                     <p class="mb-0 mt-2"><strong>Cantidad de negocios:</strong></p>
-                                    <h2 class="mb-0"><span>{{ $cantidadNegocios }}</span></h2>
+                                    <h2 class="mb-0"><span>200</span></h2>
                                 </div>
                             </div>
                         </div>
