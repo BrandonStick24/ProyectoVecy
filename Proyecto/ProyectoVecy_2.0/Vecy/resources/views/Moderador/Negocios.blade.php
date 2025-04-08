@@ -29,9 +29,9 @@
               <i class="bi bi-shop"></i> Negocios
             </a>
             <ul class="dropdown-menu">
-                <a href="{{ url('Moderador/NegociosBloqueados') }}">Bloqueados</a>
-              <li><i class="bi bi-stop-circle-fill"></i><a href="{{ url('NegociosSuspendidos') }}">Suspendidos</a></li>
-              <li><i class="bi bi-exclamation-triangle-fill"></i><a href="{{ url('UsuariosReportados') }}">Reportados</a></li>
+                <a href="">Bloqueados</a>
+              <li><i class="bi bi-stop-circle-fill"></i><a href="">Suspendidos</a></li>
+              <li><i class="bi bi-exclamation-triangle-fill"></i><a href="">Reportados</a></li>
             </ul>
           </li>
           <li class="dropdown">
@@ -41,7 +41,7 @@
             <ul class="dropdown-menu">
                 <li>
                     <i class="bi bi-lock-fill"></i>
-                    <a href="{{ url('Moderador/NegociosBloqueados') }}">Bloqueados</a>
+                    <a href="">Bloqueados</a>
                   </li>
               <li><i class="bi bi-stop-circle-fill"></i><a href="#">Suspendidos</a></li>
               <li><i class="bi bi-exclamation-triangle-fill"></i><a href="#">Reportados</a></li>
@@ -99,46 +99,27 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @forelse ($negocios as $negocio)
+                    <!-- Fila de ejemplo estática -->
                     <tr>
-                      <td>{{ $negocio->pknit_neg }}</td>
-                      <td>{{ $negocio->nom_neg }}</td>
+                      <td>123456789</td>
+                      <td>Ejemplo Tienda</td>
+                      <td>Juan Pérez</td>
+                      <td><span class="badge bg-success">Activo</span></td>
                       <td>
-                        {{ $negocio->usuario->pri_nom ?? '' }} {{ $negocio->usuario->pri_ape ?? '' }} {{$negocio->usuario->seg_ape ?? ''}}
+                        <button class="botonAccion"
+                          onclick="mostrarInfoModal(this)"
+                          data-nit="123456789"
+                          data-nombre="Ejemplo Tienda"
+                          data-propietario="Juan Pérez"
+                          data-direccion="Calle Falsa 123"
+                          data-telefono="3000000000"
+                          data-descripcion="Una tienda de ejemplo"
+                          data-estado="activo">
+                          Ver info
+                        </button>
                       </td>
-                      <td>
-                        @if ($negocio->estado === 'activo')
-                          <span class="badge bg-success">Activo</span>
-                        @elseif ($negocio->estado === 'inactivo')
-                          <span class="badge bg-secondary">Inactivo</span>
-                        @elseif ($negocio->estado === 'suspendido')
-                          <span class="badge bg-warning text-dark">Suspendido</span>
-                        @elseif ($negocio->estado === 'bloqueado')
-                          <span class="badge bg-danger">Bloqueado</span>
-                        @else
-                          <span class="badge bg-dark">No definido</span>
-                        @endif
-                      </td>
-                      <td>
-                            <button class="botonAccion"
-                              onclick="mostrarInfoModal(this)"
-                              data-nit="{{ $negocio->pknit_neg }}"
-                              data-nombre="{{ $negocio->nom_neg }}"
-                              data-propietario="{{ $negocio->usuario->pri_nom }} {{ $negocio->usuario->pri_ape }} {{ $negocio->usuario->seg_ape }}"
-                              data-direccion="{{ $negocio->dir_neg }}"
-                              data-telefono="{{ $negocio->tel_neg }}"
-                              data-descripcion="{{ $negocio->desc_neg }}"
-                              data-estado="{{ $negocio->estado }}">
-                              Ver info
-                            </button>
-                          </td>
                     </tr>
-                  @empty
-                    <tr>
-                      <td colspan="6" class="text-center">No hay negocios registrados.</td>
-                    </tr>
-                  @endforelse
-                </tbody>
+                  </tbody>
               </table>
             </div>
           </div>

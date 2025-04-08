@@ -21,11 +21,11 @@
                     </a>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-bs-toggle="dropdown" href="{{ url('Negocios') }}" role="button" aria-expanded="false">
+                    <a class="dropdown-toggle" data-bs-toggle="dropdown" href="" role="button" aria-expanded="false">
                         <i class="bi bi-shop"></i> Negocios
                     </a>
                     <ul class="dropdown-menu">
-                        <a href="{{ url('Moderador/NegociosBloqueados') }}">Bloqueados</a>
+                        <a href="">Bloqueados</a>
                         <li><i class="bi bi-stop-circle-fill"></i><a href="{{ url('NegociosSuspendidos') }}">Suspendidos</a></li>
                         <li><i class="bi bi-exclamation-triangle-fill"></i><a href="{{ url('NegociosReportados') }}">Reportados</a></li>
                     </ul>
@@ -66,10 +66,10 @@
                             <img src="{{ asset('Moderador/IMG/Negocios.jpeg') }}" class="img-fluid w-50 rounded-circle cardimg" alt="Negocios">
                             <div class="card-body">
                                 <p class="card-text">Asegura la calidad de los negocios registrados revisando sus datos.</p>
-                                <a href="{{ route('negocios') }}" class="botonCard">Ver negocios</a>
+                                <a href="{{ url('Moderador/Negocios') }}" class="botonCard">Ver negocios</a>
                                 <div class="card-footer">
                                     <p class="mb-0 mt-2"><strong>Cantidad de negocios:</strong></p>
-                                    <h2 class="mb-0"><span>{{ $cantidadNegocios }}</span></h2>
+                                    <h2 class="mb-0"><span>200</span></h2>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                             <img src="{{ asset('Moderador/IMG/Usuarios.jpg') }}" class="img-fluid w-50 rounded-circle cardimg" alt="Usuarios">
                             <div class="card-body">
                                 <p class="card-text">Asegura la calidad de los usuarios registrados revisando sus datos.</p>
-                                <a href="{{ url('Usuarios') }}" class="botonCard">Ver usuarios</a>
+                                <a href="" class="botonCard">Ver usuarios</a>
                                 <div class="card-footer">
                                     <p class="mb-0 mt-2"><strong>Cantidad de usuarios:</strong></p>
                                     <h2 class="mb-0"><span>321</span></h2>
