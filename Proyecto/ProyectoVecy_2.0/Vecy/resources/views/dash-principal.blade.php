@@ -13,7 +13,11 @@
 <body>
     <header class="header">
         <div class="logo">
+
             <img src="{{ asset('Dashboard/IMG/IMG/logov.2.png') }}" alt="" class="logoimg">
+
+           
+
             <span>VECY</span>
         </div>
         <div>
