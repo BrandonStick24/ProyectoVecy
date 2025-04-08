@@ -16,7 +16,7 @@
 <body>
     <header class="header">
         <div class="logo">
-            <img src="{{ asset('Registro/IMG/logov.2.png') }}" alt="Logo VECY" class="logoimg">
+            <img src="{{ asset('Dashboard/IMG/logov.2.png') }}" alt="Logo VECY" class="logoimg">
             <span>VECY</span>
         </div>
         <div>
