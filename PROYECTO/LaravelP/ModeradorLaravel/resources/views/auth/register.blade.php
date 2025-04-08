@@ -75,7 +75,7 @@
 
 <div class="register-container">
     <img src="https://via.placeholder.com/150" alt="Logo" class="img-fluid">
-
+    
     <form id="registroForm" method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -269,12 +269,12 @@
             if ($('#rol').val() === 'vendedor') {
                 $('#business_fields').show();
                 $('#businessModal').modal('show');
-
+                
                 // Hacer required los campos de negocio
                 $('#nit, #nombre_negocio, #descripcion_negocio, #tipo_negocio').prop('required', true);
             } else {
                 $('#business_fields').hide();
-
+                
                 // Quitar required de los campos de negocio
                 $('#nit, #nombre_negocio, #descripcion_negocio, #tipo_negocio').prop('required', false);
             }
@@ -295,7 +295,7 @@
         @if(old('segundo_nombre'))
             $('#segundo_nombre_group').show();
         @endif
-
+        
         @if(old('segundo_apellido'))
             $('#segundo_apellido_group').show();
         @endif
