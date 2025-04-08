@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\VendedorController;
 
 // Página principal
-Route::get('/', function () {
+Route::get('/dashi', function () {
     return view('dash-principal');
 });
 
