@@ -65,3 +65,7 @@ Route::put('/profile/update-business', [ProfileController::class, 'updateBusines
             ->name('moderador.negocio.toggle-bloqueo');
     });
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

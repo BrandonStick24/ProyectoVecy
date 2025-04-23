@@ -63,7 +63,7 @@ class RegisterController extends Controller
         'nombre' => ['required', 'string', 'max:255'],
         'apellido' => ['required', 'string', 'max:255'],
         'tipo_cedula' => ['required', 'string', 'in:CC,CE'],
-        'numero_cedula' => ['required', 'string', 'max:20', 'unique:users','regex:/^[0-9]+$/'],
+        'numero_cedula' => ['required','string','max:20','unique:users','regex:/^[A-Za-z0-9\-]+$/'],
         'email' => ['required', 'string', 'email:rfc,dns', 'max:255', 'unique:users'],
         'password' => ['required', 'string', 'min:8', 'confirmed'],
         'rol' => ['required', 'string', 'in:cliente,vendedor,moderador'],
