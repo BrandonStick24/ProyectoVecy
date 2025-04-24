@@ -8,8 +8,10 @@
     <!-- CSRF Token -->
 
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <title>{{ config('app.name', 'VECY') }}</title>
+    <link href="{{ asset('CSS/cardNegocio.css') }}" rel="stylesheet">
+    <link href="{{ asset('CSS/categorias.css') }}" rel="stylesheet">
+    <link href="{{ asset('CSS/Dash.css') }}" rel="stylesheet">
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -134,12 +136,14 @@
         </div>
     </div>
 </div>
+
 @endauth
 @if(session('success'))
 <div class="alert alert-success alert-dismissible fade show m-3">
     {{ session('success') }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
+
 @endif
         <main class="py-4">
             @yield('content')
@@ -147,5 +151,8 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <footer>
+        <p>© {{ date('Y') }} Vecy. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
