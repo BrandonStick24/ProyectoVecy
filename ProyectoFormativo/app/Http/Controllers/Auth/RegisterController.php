@@ -47,7 +47,7 @@ class RegisterController extends Controller
     } elseif (auth()->user()->rol === 'moderador') {
         return route('moderador.dashboard');
     } elseif (auth()->user()->rol === 'cliente') {
-        return route('cliente.dashboard');
+        return route('cliente.principal');
     }
     return '/';
 }

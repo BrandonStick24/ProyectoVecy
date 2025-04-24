@@ -71,7 +71,7 @@
             /* Sombra con tu color */
             outline: none;
         }
-        }
+
     </style>
     <div class="container">
         <div class="row justify-content-center">

@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
-    public function dashboard()
+    public function principal()
     {
-        return view('cliente.dashboard');
+        return view('principal');
     }
 
     // Nuevo método para "Info de Negocio"

@@ -13,7 +13,7 @@ class ProfileController extends Controller
         'nombre_negocio' => 'required|string|max:100',
         'nit_negocio' => 'required|string|max:20',
         'direccion_negocio' => 'required|string|max:200',
-        'tipo_negocio' => 'required|in:restaurante,tienda,servicios',
+        'tipo_negocio' => 'required|string|max:255',
     ]);
 
     // Actualizar solo si el usuario es vendedor

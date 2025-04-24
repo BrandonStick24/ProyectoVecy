@@ -16,7 +16,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/principal';
 
     /**
      * Create a new controller instance.
@@ -44,7 +44,7 @@ class LoginController extends Controller
             case 'vendedor':
                 return redirect()->route('vendedor.productos.index');
             default: // cliente
-                return redirect()->route('cliente.dashboard');
+                return redirect()->route('cliente.principal');
         }
     }
 }
