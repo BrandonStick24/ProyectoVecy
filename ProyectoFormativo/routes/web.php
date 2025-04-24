@@ -12,6 +12,9 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', function () {
     return view('/principal');
 });
+Route::get('/info-negocio', function () {
+    return view('/info-negocio');
+});
 
 // Rutas de autenticación (login/registro/logout) - Generadas por Laravel UI
 Auth::routes();

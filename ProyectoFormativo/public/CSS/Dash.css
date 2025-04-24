@@ -4,7 +4,7 @@ body {
 }
 
 /* Contenedor principal */
-main {
+.main2 {
     background: #55ad9b;
     width: 80%;
     display: flex;
