@@ -5,7 +5,7 @@
 <style>
 
 /*  Contenedor principal */
-main {
+.main2 {
   background: #55AD9B;
   width: 80%;
   display: flex;
@@ -47,7 +47,7 @@ footer {
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .header, main {
+  .header, .main2 {
       width: 90%;
   }
 }
@@ -73,7 +73,7 @@ footer {
       margin-bottom: 10px;
   }
 
-  main {
+  .main2 {
       width: 95%;
       margin-top: 30px;
       padding: 15px;

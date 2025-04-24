@@ -87,55 +87,7 @@
         </nav>
         @auth
         <!-- Modal de Información del Negocio -->
-<div class="modal fade" id="businessInfoModal" tabindex="-1" aria-labelledby="businessInfoModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="businessInfoModalLabel">Información de Mi Negocio</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('profile.update.business') }}" method="POST">
-                    @csrf
-                    @method('PUT')
 
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="nombre_negocio" class="form-label">Nombre del Negocio*</label>
-                            <input type="text" class="form-control" id="nombre_negocio" name="nombre_negocio"
-                                   value="{{ Auth::user()->nombre_negocio ?? '' }}" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="nit_negocio" class="form-label">NIT*</label>
-                            <input type="text" class="form-control" id="nit_negocio" name="nit_negocio"
-                                   value="{{ Auth::user()->nit_negocio ?? '' }}" required>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="direccion_negocio" class="form-label">Dirección*</label>
-                        <input type="text" class="form-control" id="direccion_negocio" name="direccion_negocio"
-                               value="{{ Auth::user()->direccion_negocio ?? '' }}" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="tipo_negocio" class="form-label">Tipo de Negocio*</label>
-                        <select class="form-select" id="tipo_negocio" name="tipo_negocio" required>
-                            <option value="restaurante" {{ Auth::user()->tipo_negocio == 'restaurante' ? 'selected' : '' }}>Restaurante</option>
-                            <option value="tienda" {{ Auth::user()->tipo_negocio == 'tienda' ? 'selected' : '' }}>Tienda</option>
-                            <option value="servicios" {{ Auth::user()->tipo_negocio == 'servicios' ? 'selected' : '' }}>Servicios</option>
-                        </select>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 @endauth
 @if(session('success'))
