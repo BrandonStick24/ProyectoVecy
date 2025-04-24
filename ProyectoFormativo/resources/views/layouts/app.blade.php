@@ -117,6 +117,7 @@
 
     <!-- Tu script personalizado -->
     <script src="{{ asset('JS/SliderNegocios.js') }}"></script>
+    <script src="{{ asset('JS/categoriasSlider.js') }}"></script>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
