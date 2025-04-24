@@ -96,7 +96,7 @@ footer {
 }
 
 </style>
-
+ <main class="main2">
     <!-- Negocios Disponibles -->
     <section class="seccion-negocios">
         <h2 class="titulo-seccion">Negocios Disponibles</h2>
@@ -145,7 +145,7 @@ footer {
             <div class="swiper-button-next"></div>
         </div>
     </section>
-
+</main>
 @endsection
 <!--JS-->
 <script>
