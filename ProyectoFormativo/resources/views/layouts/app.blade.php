@@ -22,11 +22,14 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light" style="background-color: #55AD9B">
+        <nav class="navbar navbar-expand-md navbar-light" style="background-color: #55AD9B; padding: 0;">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <div style="display: flex; flex-direction: column;">
+                <img src="{{ asset('IMG/logo.png') }}" alt="" style="width: 60px">
+                <a style="color: white; font-weight: bold; position: relative; left: 10%;" class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+            </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -43,13 +46,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}" style="color: white; font-weight: bold;">Iniciar sesion</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}" style="color: white; font-weight: bold;">Registrarse</a>
                                 </li>
                             @endif
                         @else
