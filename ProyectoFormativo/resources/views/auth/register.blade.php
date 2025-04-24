@@ -1,11 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .encabezado_carta {
+        background-color: #55AD9B;
+        color: white;
+        padding: 5px;
+        font-family: arial sans-serif;
+        font-weight: bold;
+    }
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header bg-primary text-white">{{ __('Registro de Usuario') }}</div>
+                <div class="card-header encabezado_carta">{{ __('Registro de Usuario') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">

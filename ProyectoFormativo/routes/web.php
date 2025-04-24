@@ -10,7 +10,7 @@ use App\Http\Controllers\ProfileController;
 | Rutas Públicas
 |--------------------------------------------------------------------------*/
 Route::get('/', function () {
-    return view('/welcome');
+    return view('/principal');
 });
 
 // Rutas de autenticación (login/registro/logout) - Generadas por Laravel UI
