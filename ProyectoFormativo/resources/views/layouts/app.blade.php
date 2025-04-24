@@ -13,6 +13,7 @@
     <link href="{{ asset('CSS/categorias.css') }}" rel="stylesheet">
     <link href="{{ asset('CSS/Dash.css') }}" rel="stylesheet">
     <link href="{{ asset('CSS/infoNego.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -105,6 +106,18 @@
             @yield('content')
         </main>
     </div>
+
+
+    <!-- Incluir jQuery (si lo necesitas) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Incluir JS de Swiper -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Tu script personalizado -->
+    <script src="{{ asset('JS/SliderNegocios.js') }}"></script>
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
