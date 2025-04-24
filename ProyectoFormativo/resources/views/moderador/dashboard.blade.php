@@ -93,7 +93,7 @@
                             <tbody>
                                 @foreach ($negocios as $negocio)
                                     <tr>
-                                        <td>{{ $negocio->nit }}</td>
+                                        <td>{{ $negocio->nit_negocio}}</td>
                                         <td>{{ $negocio->nombre_negocio }}</td>
                                         <td>{{ $negocio->direccion_negocio}}</td>
                                         <td>{{ $negocio->tipo_negocio }}</td>
