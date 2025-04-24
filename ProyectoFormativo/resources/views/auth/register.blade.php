@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <video autoplay muted loop id="videoFondo">
         <source src="{{ asset('fondoV.mp4') }}" type="video/mp4">
         Tu navegador no soporta el video HTML5.
